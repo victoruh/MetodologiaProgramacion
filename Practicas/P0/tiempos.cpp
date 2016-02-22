@@ -37,6 +37,20 @@ a T. Los valores de T2 deben estar en los intervalos correctos
 */
 hora obtenerNuevoTiempo(hora t,hora s){
   hora nuevo;
+  int aux;
+  //Guardamos el tiempo en minutos
+  aux=(t.segundo+s.segundo)/60;
+  //Guardamos el tiempo en segundos
+  nuevo.segundo=(t.segundo+s.segundo)%60;
+
+  //Procedemos igual que antes
+  nuevo.minuto=t.minuto+s.minuto+aux;
+
+  aux=(nuevo.minuto/60);
+  nuevo.minuto=nuevo.minuto%60;
+
+  nuevo.hora=t.hora+s.hora+aux;
+
 
   return nuevo;
 }
@@ -57,16 +71,22 @@ bool esPosterior(hora t1,hora t2){
 
 
 int main(){
-  hora tiempo = crear(1,1,3);
+  hora tiempo = crear(1,1,43);
 
   hora tiempo2 = crear(10,10,40);
 
-  devuelveHora(tiempo);
+
 
   cout<<"\n"<<convertirASegundos(tiempo);
 
   cout<<"\n"<<esPosterior(tiempo,tiempo2);
+  devuelveHora(tiempo);
+  devuelveHora(tiempo2);
 
+  hora tiempo3;
+  tiempo3 = obtenerNuevoTiempo(tiempo,tiempo2);
+
+  devuelveHora(tiempo3);
 
   return 0;
 }
