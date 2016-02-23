@@ -27,6 +27,7 @@ Producto creaProducto(string nombre, int peso, float precio) {
   Producto producto;
   //Inicializamos
   producto.nombre=nombre;
+  //Pasamos el peso a Kg
   producto.peso=peso;
   producto.precio_kg = precio;
 
@@ -60,13 +61,30 @@ void obtenerImporteYPeso(const Compra & c, float & precio, int & peso)
   }
 
   peso = (float(peso/1000));
-  cout<<"\nEl importe de su compra es :"<<precio<<" y su peso: "<<peso<<" Kg"<<endl;
 }
+
+//Función auxiliar que devuelve el precio de la compra sin IVA
+void obtenerImporte(const Compra & c, float & precio){
+  precio=0;
+  for (int i = 0; i < 10; i++) {
+    //Pasamos de gramos a Kg
+    precio+=c.lista[i].precio_kg*((float)c.lista[i].peso/1000);
+  }
+}
+
 // función que muestra el "ticket" de compra según el formato sugerido
 void mostrarTicketCompra(const Compra & c)
 {
   listarCompra(c);
-  int precioSinIVA;
+  float precioSinIVA;
+  obtenerImporte(c,precioSinIVA);
+  cout<<"\nSubtotal :"<<precioSinIVA<<endl;
+
+  //IVA sobre el 21%
+  const float IVA = 0.21;
+  float total = (precioSinIVA*IVA)+precioSinIVA;
+  cout<<"\nIVA (21%): " <<precioSinIVA*IVA;
+  cout<<"\nTotal : "<<total<<endl;
 }
 
 int main()
@@ -92,8 +110,8 @@ mi_compra.lista[i] = creaProducto(nombre, peso, precio);
 << peso << " Kg. " << endl;
  // se muestra el ticket de la compra.
  cout << "\n ******** Prueba de la funcion mostrarTicketCompra ******** \n";
-// mostrarTicketCompra(mi_compra);
-// cout << "\n ******** Prueba de la funcion incrementarPrecio ********";
+ mostrarTicketCompra(mi_compra);
+ cout << "\n ******** Prueba de la funcion incrementarPrecio ********";
  incrementarPrecios(mi_compra, 10);
  cout << "\n ******** y listarCompra de nuevo \t\t********\n\n";
  listarCompra(mi_compra);

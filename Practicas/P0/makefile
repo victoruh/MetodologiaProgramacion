@@ -1,4 +1,11 @@
+GXX=g++
+G11=-std=gnu++11
+all: tiempos fruteria
 tiempos:
-	g++ tiempos.cpp -o tiempo
+	$(GXX) tiempos.cpp -o tiempo
 fruteria:
-	g++ fruteria.cpp -std=gnu++11 -o compra
+	$(GXX) fruteria.cpp $(G11) -o compra
+
+clean:
+	@echo "Limpiando ejecutables"
+	rm tiempo compra
