@@ -1,10 +1,3 @@
-/**
-@file
-@author Rafael Lachica Garrido
-@date 16 de febrero de 2015, 19:33
-@brief Funciones de manejo de bloqueLeds
-
-*/
 
 #ifndef _BLOQUELED_H_
 #define	_BLOQUELED_H_
@@ -23,8 +16,7 @@ void on(bloqueLed &b, int pos);
 @param b 	el @c bloqueLed cuyo LED se quiere desactivar
 @param pos 	el LED dentro de @p b que se quiere desactivar (0 m�s a la derecha)
 */
-void off(bloqueLed &b, int pos){
-}
+void off(bloqueLed &b, int pos);
 
 /**
 @brief devuelve el estado del LED (encendido = true, apagado = false) en la posici�n @p pos
@@ -50,16 +42,13 @@ void print(bloqueLed b);
 @brief enciende todos los LEDs
 @param b el @c bloqueLed que se quiere encender completamente.
 */
-void encender(bloqueLed &b){
-  b = 0b11111111;
-}
+void encender(bloqueLed &b);
+
 /**
 @brief apaga todos los LEDs
 @param b el @c bloqueLed que se quiere apagar completamente.
 */
-void apagar(bloqueLed &b){
-  b = 0b00000000;
-}
+void apagar(bloqueLed &b);
 
 /**
 @brief enciende los LEDs seg�n la configuraci�n de @p v
@@ -87,38 +76,6 @@ void volcar(bloqueLed b, bool v[]);
 */
 void encendidos(bloqueLed b, int posic[], int &cuantos);
 
-/**
-@brief enmascara a binario una posicion
-@param numero de posicion
-*/
-bloqueLed enmascara(int numero){
-  bloqueLed binario;
-  switch (numero) {
-    case 0:
-      binario = 0b00000000;
-    break;
-    case 1:
-      binario = 0b00000010;
-    break;
-    case 2:
-      binario = 0b00000100;
-    break;
-    case 3:
-      binario = 0b00001000;
-    break;
-    case 4:
-      binario = 0b00010000;
-    break;
-    case 5:
-      binario = 0b00100000;
-    break;
-    case 6:
-      binario = 0b01000000;
-    break;
-    case 7:
-      binario = 0b10000000;
-    break;
-  }
-  return binario;
-}
+bloqueLed enmascara(int numero);
+
 #endif
