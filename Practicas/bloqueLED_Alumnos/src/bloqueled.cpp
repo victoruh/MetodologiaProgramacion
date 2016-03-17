@@ -12,7 +12,6 @@ bloqueLed enmascara(int numero){
 
   //enmsarcara la máscara en numero posiciones
   binario = 1<<numero;
-
   return binario;
 }
 
@@ -26,7 +25,7 @@ void on(bloqueLed &b, int pos){
   bloqueLed mask = enmascara(pos);
 
   //aplicarle or
-  b = mask | b;
+  b = b | mask;
 
 }
 /**
@@ -40,7 +39,7 @@ void off(bloqueLed &b, int pos){
 
   mask = ~mask;
 
-  b = mask & b;
+  b = b & mask;
 }
 
 /**
@@ -52,7 +51,7 @@ void off(bloqueLed &b, int pos){
 */
 bool get(bloqueLed b, int pos){
   //crear máscara
-  bloqueLed mask = enmascara(pos);
+  bloqueLed mask = enmascara(7-pos);
   bool resultado = mask & b;
 
   if (resultado != 0)
@@ -71,8 +70,7 @@ Por ejemplo, si en el @c bloqueLed @c b est�n encendidos los LEDs en posicione
 
 */
 void print(bloqueLed b){
-  //Leemos al revés de derecha a izquierda, 7 6 5 .... 0
-  for (int i = 7; i > -1; i--) {
+  for (int i = 0;i<8;i++) {
     cout<<get(b,i);
   }
   cout<<endl;
