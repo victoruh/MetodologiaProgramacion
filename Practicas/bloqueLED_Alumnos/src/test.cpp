@@ -42,11 +42,31 @@ int main(){
 
 
     cout << "\nAhora la animacion\nEjemplo 1 \n";
-    // aqui debes escribir las instrucciones para que se muestre
-    // el primer ejemplo de animacion.
+    encender(b);
+    print(b);
+    for (int i=7;i>=0;i--){
+      off(b,i);
+      print(b);
+      on(b,i);
+    }
 
     cout << "\n\nEjemplo 2 \n";
-    // aqui debes escribir las instrucciones para que se muestre
-    // el segundo ejemplo de animacion.
+    on(b,0);
+    print(b);
+    for (int i=7;i>=5;i--){
+      off(b,i);
+      off(b,7-i);
+      print(b);
+    }
+
+    apagar(b);
+    print(b);
+    for (int i=7;i>=5;i--){
+      on(b,i-4);
+      on(b,4+(7-i));
+      print(b);
+    }
+    encender(b);
+    print(b);
 
 }

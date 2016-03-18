@@ -6,8 +6,8 @@ obj/test.o:
 obj/bloqueled.o:
 	g++ -c src/bloqueled.cpp -o obj/bloqueled.o -Iinclude
 
-#library:
-#	ar rvs lib/libformas.a obj/punto.o obj/circulo.o
+library:
+	ar rvs lib/libLeds.a obj/bloqueLed.o
 
 exe:
 	g++ obj/bloqueled.o obj/test.o -o bin/bloqueled -Iinclude

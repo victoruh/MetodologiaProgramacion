@@ -50,7 +50,8 @@ void off(bloqueLed &b, int pos){
 @retval false	si el LED en la posici�n @p pos est� apagado
 */
 bool get(bloqueLed b, int pos){
-  //crear máscara
+  //crear máscara 7 posicones - pos: 7-7 posicion 0, que es la primera
+  //Hacemos esto para recorrer de derecha a izquierda de forma 7 6 5 4 3 2 1 0
   bloqueLed mask = enmascara(7-pos);
   bool resultado = mask & b;
 
@@ -98,7 +99,14 @@ void apagar(bloqueLed &b){
 
 Asigna a @p b la configuraci�n de LEDs contenida en @p v. @p v es un vector de 8 booleanos donde @c true significa encendido y @c false significa apagado.
 */
-void asignar(bloqueLed &b, const bool v[]);
+void asignar(bloqueLed &b, const bool v[]){
+for (int i=0;i<8;i++){
+  if (v[i]==1)
+    on(b,i);
+  else
+    off(b,i);
+  }
+}
 
 /**
 @brief recupera la configuraci�n de todos los LED
@@ -107,8 +115,11 @@ void asignar(bloqueLed &b, const bool v[]);
 
 Vuelca en @p v la configuraci�n de LEDs contenida en @p b. @c true significa encendido y @c false significa apagado. El tama�o de @p v debe ser 8.
 */
-void volcar(bloqueLed b, bool v[]);
-
+void volcar(bloqueLed b, bool v[]){
+  for (int i=0;i<8;i++){
+    v[i]=get(b,i);
+  }
+}
 /**
 @brief devuelve las posiciones de los LEDs encendidos
 @param b el @c bloqueLed que se quiere consultar
@@ -117,4 +128,10 @@ void volcar(bloqueLed b, bool v[]);
 */
 void encendidos(bloqueLed b, int posic[], int &cuantos){
   cuantos = 0;
+  for (int i=0;i<8;i++){
+    if (get(b,i)==true){
+      posic[cuantos]=7-i;
+      cuantos++;
+    }
+  }
 }
