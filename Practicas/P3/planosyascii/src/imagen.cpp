@@ -4,7 +4,6 @@ Imagen::Imagen(){
   this.nfilas = 0;
   this.ncolumnas = 0;
   this.datos = 0;
-  return this;
 }
 
 Imagen::Imagen(int filas, int columnas){
@@ -16,7 +15,6 @@ Imagen::Imagen(int filas, int columnas){
   for (int i=0;i<ncolumnas*nfilas;i++){
     datos[i]=0;
   }
-  return this;
 }
 
 void Imagen::crear(int filas,int columnas){
