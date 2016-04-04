@@ -18,7 +18,7 @@ $(BIN)/testarteASCII:
 $(BIN)/testplano:
 
 $(BIN)/testimagen: $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o
-	$(CXX) $(CPPFLAGS) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o -o $(BIN)/testimagen
+	$(CXX) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o -o $(BIN)/testimagen
 
 # ************* CODIGOS OBJETO ******************* #
 $(OBJ)/pgm.o:

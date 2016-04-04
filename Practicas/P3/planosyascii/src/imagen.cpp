@@ -76,5 +76,5 @@ bool Imagen::leerImagen(const char nombreFichero[]){
 @retval false 	si se ha producido algún error en la escritura
 */
 bool Imagen::escribirImagen(const char nombreFichero[], bool esBinario){
-  
+  return escribirPGMBinario (nombreFichero, this->datos, this->nfilas, this->ncolumnas);
 }
