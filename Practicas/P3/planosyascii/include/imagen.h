@@ -128,6 +128,12 @@ Lee desde disco los datos de la imagen llamada @a nombreFichero y la guarda en l
 @retval false 	si se ha producido algún error en la escritura
 */
    bool escribirImagen(const char nombreFichero[], bool esBinario);
+
+/**
+@brief Dado un numero @param k extraer el plano de bits k-esimo y devolverlo como una nueva imagen
+@param k bit k-esimo
+*/
+  Imagen plano (int k);
 };
 
 #endif

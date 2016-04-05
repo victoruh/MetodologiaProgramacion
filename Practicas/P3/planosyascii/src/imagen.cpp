@@ -1,6 +1,8 @@
 #include "imagen.h"
 #include "pgm.h"
-
+#include "byte.h"
+#include <iostream>
+using namespace std;
 Imagen::Imagen(){
   nfilas = 0;
   ncolumnas = 0;
@@ -78,3 +80,33 @@ bool Imagen::leerImagen(const char nombreFichero[]){
 bool Imagen::escribirImagen(const char nombreFichero[], bool esBinario){
   return escribirPGMBinario (nombreFichero, this->datos, this->nfilas, this->ncolumnas);
 }
+
+/**
+@brief Dado un numero @param k extraer el plano de bits k-esimo y devolverlo como una nueva imagen
+@param k bit k-esimo
+*/
+Imagen Imagen::plano (int k){
+    byte bAux; //Byte auxiliar que sacarameos de la imagen original
+    bool bit; //Valor del bit kesimo
+    Imagen copia(this->nfilas,this->ncolumnas);
+    //Recorremos pixeles
+    for (int i=0;i<this->nfilas*this->ncolumnas;i++){
+      //Obtenemos el byte
+      bAux = this->getPos(i);
+      //Ahora obtenemos el valor del bit k-esimo
+      bit = getbit(bAux,k);
+      //Ahora ponemos en el bit mas significado del pixel actual de la imagen copia el valor del bit de la imagen original
+      //Ponemos ese a 1 y los demas a 0 si esta encendido
+      if (bit == 1){
+        on(copia.datos[i],7);
+        for (int j=0;j<7;j++)
+          off(copia.datos[i],j);
+      }
+      else{
+        off(copia.datos[i],7);
+        for (int j=0;j<7;j++)
+          off(copia.datos[i],j);
+      }
+    }//For
+    return copia;
+  }

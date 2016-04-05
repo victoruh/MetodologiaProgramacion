@@ -15,7 +15,8 @@ $(BIN)/arteASCII:
 
 $(BIN)/testarteASCII:
 
-$(BIN)/testplano:
+$(BIN)/testplano: $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testplano.o $(OBJ)/byte.o
+	$(CXX) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/byte.o $(OBJ)/testplano.o -o $(BIN)/testplano
 
 $(BIN)/testimagen: $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o
 	$(CXX) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o -o $(BIN)/testimagen
@@ -27,9 +28,14 @@ $(OBJ)/pgm.o:
 $(OBJ)/imagen.o:
 	$(CXX) $(CPPFLAGS) $(SRC)/imagen.cpp -o $(OBJ)/imagen.o
 
-$(OBJ)/testimagen.o:
-	$(CXX) $(CPPFLAGS) $(SRC)/testimagen.cpp -o $(OBJ)/testimagen.o
+$(OBJ)/byte.o:
+	$(CXX) $(CPPFLAGS) $(SRC)/byte.cpp -o $(OBJ)/byte.o
 
+$(OBJ)/testimagen.o:
+		$(CXX) $(CPPFLAGS) $(SRC)/testimagen.cpp -o $(OBJ)/testimagen.o
+
+$(OBJ)/testplano.o:
+		$(CXX) $(CPPFLAGS) $(SRC)/testplano.cpp -o $(OBJ)/testplano.o
 # ***************** LIBRERIAS ***************** #
 $(LIB)/libimagen: $(OBJ)/imagen.o $(OBJ)/pgm.o
 	ar rvs $(LIB)/libimagen.a $(OBJ)/imagen.o $(OBJ)/pgm.o
