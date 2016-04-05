@@ -25,7 +25,7 @@ $(BIN)/testimagen: $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o $(OBJ)/byte.
 $(OBJ)/pgm.o:
 	$(CXX) $(CPPFLAGS) $(SRC)/pgm.cpp -o $(OBJ)/pgm.o
 
-$(OBJ)/imagen.o:
+$(OBJ)/imagen.o: $(OBJ)/byte.o
 	$(CXX) $(CPPFLAGS) $(SRC)/imagen.cpp -o $(OBJ)/imagen.o
 
 $(OBJ)/byte.o:
