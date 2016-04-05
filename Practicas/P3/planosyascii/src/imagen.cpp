@@ -96,6 +96,7 @@ Imagen Imagen::plano (int k){
       //Ahora obtenemos el valor del bit k-esimo
       //Como recorremos en nuestra clase el vector de la forma 7 6 5 4 3 2 1 0
       //A la hora de enmascarar, le pasamos la 7-kesima de la forma que la posicion 0 es la 7 en nuestro caso
+      //Entonces si queremos en realidad una posicion, necesitamos pasarlo asi
       bit = getbit(bAux,7-k);
       //Ahora ponemos en el bit mas significado del pixel actual de la imagen copia el valor del bit de la imagen original
       //Ponemos ese a 1 y los demas a 0 si esta encendido
