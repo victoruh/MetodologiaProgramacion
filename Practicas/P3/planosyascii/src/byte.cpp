@@ -50,9 +50,8 @@ void off(byte &b, int pos){
 @retval false	si el bit en la posici�n @p pos est� apagado
 */
 bool getbit(byte b, int pos){
-  //crear máscara 7 posicones - pos: 7-7 posicion 0, que es la primera
-  //Hacemos esto para recorrer de derecha a izquierda de forma 7 6 5 4 3 2 1 0
-  byte mask = enmascara(7-pos);
+  //crear máscara
+  byte mask = enmascara(pos);
   bool resultado = mask & b;
 
   if (resultado != 0)
@@ -71,7 +70,7 @@ Por ejemplo, si en el @c byte @c b est�n encendidos los bits en posiciones 1 y
 
 */
 void print(byte b){
-  for (int i = 0;i<8;i++) {
+  for (int i = 7;i<=0;i--) {
     cout<<getbit(b,i);
   }
   cout<<endl;
