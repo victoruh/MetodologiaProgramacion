@@ -19,7 +19,7 @@ $(BIN)/testplano: $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testplano.o $(OBJ)/byte.o
 	$(CXX) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/byte.o $(OBJ)/testplano.o -o $(BIN)/testplano
 
 $(BIN)/testimagen: $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o $(OBJ)/byte.o
-	$(CXX) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o -o $(BIN)/testimagen
+	$(CXX) $(OBJ)/imagen.o $(OBJ)/pgm.o $(OBJ)/testimagen.o $(OBJ)/byte.o -o $(BIN)/testimagen
 
 # ************* CODIGOS OBJETO ******************* #
 $(OBJ)/pgm.o:
