@@ -195,7 +195,7 @@ bool aArteASCII (const char grises[],char arteASCII[],int maxlong,int tamGrises)
  */
 bool leeraArteASCII (const char * grises,char * ficheroSalida,int maxlong);
 
-bool listaAArteASCII(const Lista celdas);
+bool listaAArteASCII(const Lista &celdas);
 
 
 };

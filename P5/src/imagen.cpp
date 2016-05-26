@@ -2,7 +2,6 @@
 #include "pgm.h"
 #include "byte.h"
 #include "lista.h"
-#include "../../MP/Practicas/P3/planosyascii/include/imagen.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -151,10 +150,9 @@ bool Imagen::escribirImagen(const char nombreFichero[], bool esBinario){
    @param k bit k-esimo
  */
 Imagen *Imagen::plano (int k){
-/*        byte bAux; //Byte auxiliar que sacarameos de la imagen original
+        byte bAux; //Byte auxiliar que sacarameos de la imagen original
         bool bit; //Valor del bit kesimo
-        Imagen copia(nfilas,ncolumnas);
-        cout<<"\nProblema viene de antes"<<endl;
+        Imagen *copia = new Imagen(nfilas,ncolumnas);        
         //Recorremos pixeles
         for (int i=0; i<this->nfilas*this->ncolumnas; i++) {
                 //Obtenemos el byte
@@ -167,18 +165,18 @@ Imagen *Imagen::plano (int k){
                 //Ahora ponemos en el bit mas significado del pixel actual de la imagen copia el valor del bit de la imagen original
                 //Ponemos ese a 1 y los demas a 0 si esta encendido
                 if (bit == 1) {
-                        on(copia.datos[i],7);
+                        on(copia->datos[i],7);
                         for (int j=0; j<7; j++)
-                                off(copia.datos[i],j);
+                                off(copia->datos[i],j);
                 }
                 else{
-                        off(copia.datos[i],7);
+                        off(copia->datos[i],7);
                         for (int j=0; j<7; j++)
-                                off(copia.datos[i],j);
+                                off(copia->datos[i],j);
                 }
         } //For
         return copia;
-	*/
+	/*
 
 
   Imagen *aux= new Imagen(nfilas,ncolumnas);
@@ -196,7 +194,7 @@ Imagen *Imagen::plano (int k){
     }
     aux->setPos(i,bit);  
   }
-  return aux;
+  return aux;*/
 }
 
 /**
@@ -348,7 +346,7 @@ bool Imagen::leeraArteASCII (const char * fichero,char * ficheroSalida,int maxlo
         return true;
 }
 
-/*bool Imagen::listaAArteASCII(const Lista &celdas){
+bool Imagen::listaAArteASCII(const Lista &celdas){
   char * arteASCII= new char[nfilas*(ncolumnas+1)]; 
   bool exito=true;
   for(int x=0; x<celdas.longitud(); x++){
@@ -369,5 +367,5 @@ bool Imagen::leeraArteASCII (const char * fichero,char * ficheroSalida,int maxlo
   }
   delete []arteASCII;
   return exito;
-}*/
+}
 
