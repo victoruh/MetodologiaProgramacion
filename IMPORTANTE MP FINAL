@@ -1,0 +1,19 @@
+Lo que el comprueba:
+
+-Compilar con los flags. Un warning en mi equipo, puede ser un error en el suyo.
+$CPPFLAGS
+Compilar -Wall -Werror (flags)
+
+-Valgrind: 0 errores y 0 learnings
+
+- Probar todas las imágenes.
+
+- Parámetros ARGV/ARGC
+
+- Validar rango de array
+
+-Chequear ficheros
+
+- = != constructor de copia
+
+- Cuidado con THIS
