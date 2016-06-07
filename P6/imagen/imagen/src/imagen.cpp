@@ -45,13 +45,15 @@ void Imagen::crear(int filas,int columnas){
 
 //Funcion auxliar al destructor
 void Imagen::destruir(){
-        if (datos!=0) {
-	  delete [] datos[0];
-          delete [] datos;
-        }
-
-        datos = 0;
-        nfilas = ncolumnas = 0;
+        if (datos != 0){
+      if (datos[0] != 0){
+		    delete [] datos[0];
+      }
+		  delete [] datos;
+    }
+		datos = 0;
+		nfilas = 0;
+		ncolumnas = 0;
 
 }
 
@@ -267,40 +269,22 @@ Imagen Imagen::plano (int k){
    @param maxlong maximo tamaño de aArteASCII
  */
 const bool Imagen::aArteASCII (const char grises[],char arteASCII[],int maxlong){
-        int filas = this->nfilas;
-        int columnas = this->ncolumnas+1;
-        int cardinal=0;
-        byte pixel=0;
-        int contadorColumna=0;
-
-//Obtenemos el tamanio de grises
-        int size=0;
-        while ((grises[size])!=' ') {
-                size++;
-        }
-        cardinal=size+1; //Añadimos el caracter \n
-
-//Si es mayor que filas*columnas cabe en la imagen, la creamos y devuleve true
-        if (maxlong > (filas*columnas)) {
-                for (int i=0; i<filas; i++) {
-                        //Obtenemos valor del pixel
-                        for (int j=0; j<columnas; j++) { //Una columna menos porque la ultima tiene el caracter \n
-                                pixel = this->get(i,j);
-                                //Asignamos a cada posicion de arteASCII su conversion a caracteres segun el rango de intensidad
-                                //de cada pixel
-                                arteASCII[contadorColumna] = char(grises[((pixel * cardinal/256))]);
-                                contadorColumna++;
-                        }
-                        arteASCII[contadorColumna]='\n';
-                        contadorColumna++;
-                }
-                arteASCII[contadorColumna]='\0';
-                return true;
-        }
-
-        else {
-                return false;
-        }
+bool exito=false;
+	if(ncolumnas*nfilas < maxlong){
+		int ncaracteres=strlen(grises);
+		int indice=0;
+		for(int y=0; y<nfilas; y++){
+			for(int x=0; x<ncolumnas; x++){
+				arteASCII[indice]=grises[(datos[0][(y*ncolumnas)+x]*ncaracteres)/256];
+				indice++;
+			}
+			arteASCII[indice]='\n';
+			indice++;
+		}
+		exito=true;
+	}
+	
+	return exito;
 
 }
 
@@ -415,7 +399,14 @@ const bool Imagen::leeraArteASCII (const char * fichero,char * ficheroSalida,int
 }
 
 const bool Imagen::listaAArteASCII(const Lista &celdas){
-        char * arteASCII = new char[nfilas*(ncolumnas+1)+1];
+        char ** arteASCII = new char[nfilas];
+	arteASCII[0] = new char[nfilas * ncolumnas];
+	
+	for(int i = 1; i < nfilas*ncolumnas;i++)
+	{
+	  arteASCII[i] = new char[nfilas * ncolumnas];
+	}
+	
         bool exito=true;
         //Para cada lista de celdas
         for(int x=0; x<celdas.longitud(); x++) {
